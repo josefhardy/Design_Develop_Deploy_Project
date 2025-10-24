@@ -1,12 +1,19 @@
 current functionalities with queries:
-add a user to Users 
-find User by email or id 
 
-add student to Students
-find Student by email or id
-update student wellbing score 
-delete student by id
-get all students under a specific supervisor 
-get all students with wellbing score below a certain threshold
-#should add a function to get all inactive students(all studemts with no interaction for more than x days))
-#also get all students function
+- add a user to Users 
+- find User by email or id 
+
+- add student to Students
+- find Student by email or id
+- update student wellbing score 
+- delete student by id
+- get all students under a specific supervisor 
+- get all students with wellbing score below a certain threshold
+- get all inactive students 
+- also get all students
+
+- get supervisor by email or id
+#need to create a meetings table
+#need ot add last_office hours_update, last_wellbeing_check, office hours, meetings booked last month, wellbeing checks last month to supervisor table
+#need to create a meetings object 
+#need to make appropriate changes to supervisor repo fucntions 
