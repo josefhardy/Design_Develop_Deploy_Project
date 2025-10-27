@@ -5,11 +5,8 @@ current functionalities with queries:
 
 - add student to Students
 - find Student by email or id
-- update student wellbing score 
 - delete student by id
 - get all students under a specific supervisor 
-- get all students with wellbing score below a certain threshold
-- get all inactive students 
 - also get all students
 
 - get supervisor by email or id
@@ -17,8 +14,25 @@ current functionalities with queries:
 - update a supervisors office hours
 - checks if the supervisor needs to update their office hours
 
+- get all inactive students 
+- get all students with wellbing score below a certain threshold
+- update student wellbing score
+- get student status 
 
+- fetch available meeting slots for a supervisor on a given date
+- add a meeting to the table
+- 
+
+REQUIRED FUNCTIONALITY:
+- a studeny should be bale to report how they are feeling(wellbeing score)
+- PS should be able to view well being scores of thier students 
+- personal supervisors must be able to book meetings with students
+- student shouild be able to book a meeting
+- senior tutor should be able to see status of all students 
+- senior tutor shoud be able to view supervisors interactions levels
+- 
 
 TO DO:
 - add information on personas at the bottom of the console that is consistent throughout so that 
 when it is being marked they have informatio on objects being used
+- need yto make sure that meeting logic is solid, ie if a supervisor changes office hours then meetings need to be changed/ updated 
