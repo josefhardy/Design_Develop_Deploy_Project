@@ -34,6 +34,12 @@ using (var conn = new SQLiteConnection(conn_string))
        CREATE TABLE IF NOT EXISTS Supervisors(
             supervisor_id INTEGER PRIMARY KEY AUTOINCREMENT, 
             user_id INTEGER NOT NULL, 
+            last_office_hours_update DATE NOT NULL,
+            last_wellbeing_check DATE NOT NULL, 
+            office_hours TEXT,
+            meetings_booked_this_month INTEGER DEFAULT 0,   
+            wellbeing_checks_this_month INTEGER DEFAULT 0,
+            
             FOREIGN KEY (user_id) REFERENCES Users (user_id)
         );
 
@@ -51,16 +57,14 @@ using (var conn = new SQLiteConnection(conn_string))
             meeting_id INTEGER PRIMARY KEY AUTOINCREMENT, 
             student_id INTEGER NOT NULL, 
             supervisor_id INTEGER NOT NULL, 
-            meeting_date TEXT NOT NULL, 
+            meeting_date DATE NOT NULL, 
+            start_time TIME NOT NULL,
+            end_time TIME NOT NULL, 
             notes TEXT, 
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (student_id) REFERENCES Students(student_id),
             FOREIGN KEY (supervisor_id) REFERENCES Supervisors(supervisor_id)
-            );
-        
-       CREATE TABLE IF NOT EXISTS Senior_Tutors(
-            senior_tutor_id INTEGER PRIMARY KEY AUTOINCREMENT, 
-            user_id INTEGER NOT NULL, 
-            FOREIGN KEY (user_id) REFERENCES Users(user_id)
             );
 ";
 

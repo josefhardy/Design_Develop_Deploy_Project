@@ -67,15 +67,89 @@ public class SupervisorRepository
         }
     }
 
-	public void RecordSupervisorInteraction(int supervisor_id, int student_id, string interaction_type) 
-	{
-		
-	}
+    public (int meetings_booked, int wellbeing_checks) GetSupervisorActivity(int supervisorId)
+    {
+        if (supervisorId <= 0)
+            return (0, 0);
 
-	public int GetSupervisorActivity() 
-	{
-		
-	}
+        try
+        {
+            using (var conn = new SQLiteConnection(_connectionString))
+            {
+                conn.Open();
+
+                string query = @"
+                SELECT meetings_booked_last_month, wellbeing_checks_last_month
+                FROM Supervisors
+                WHERE supervisor_id = @SupervisorId";
+
+                using (var cmd = new SQLiteCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@SupervisorId", supervisorId);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            int meetings = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
+                            int checks = reader.IsDBNull(1) ? 0 : reader.GetInt32(1);
+                            return (meetings, checks);
+                        }
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Database error in GetSupervisorActivity: {ex.Message}");
+        }
+
+        return (0, 0);
+    }
+
+
+    public void UpdateOfficeHours(int supervisorId, string officeHours)
+    {
+        using (var conn = new SQLiteConnection(_connectionString))
+        {
+            conn.Open();
+            string query = @"UPDATE Supervisors
+                         SET office_hours = @OfficeHours,
+                             last_office_hours_update = @UpdateDate
+                         WHERE supervisor_id = @SupervisorId";
+
+            using (var cmd = new SQLiteCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@OfficeHours", officeHours);
+                cmd.Parameters.AddWithValue("@UpdateDate", DateTime.UtcNow);
+                cmd.Parameters.AddWithValue("@SupervisorId", supervisorId);
+                cmd.ExecuteNonQuery();
+            }
+        }
+    }
+
+    public bool NeedsOfficeHourUpdate(int supervisorId)
+    {
+        using (var conn = new SQLiteConnection(_connectionString))
+        {
+            conn.Open();
+            string query = @"SELECT last_office_hours_update
+                         FROM Supervisors
+                         WHERE supervisor_id = @SupervisorId";
+
+            using (var cmd = new SQLiteCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@SupervisorId", supervisorId);
+                var result = cmd.ExecuteScalar();
+                if (result == null || result == DBNull.Value)
+                    return true;
+
+                DateTime lastUpdate = Convert.ToDateTime(result);
+                return (DateTime.UtcNow - lastUpdate).TotalDays >= 7;
+            }
+        }
+    }
+
 
     private Supervisor MapReaderToSupervisor(SQLiteDataReader reader)
     {

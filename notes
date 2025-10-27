@@ -13,7 +13,12 @@ current functionalities with queries:
 - also get all students
 
 - get supervisor by email or id
-#need to create a meetings table
-#need ot add last_office hours_update, last_wellbeing_check, office hours, meetings booked last month, wellbeing checks last month to supervisor table
-#need to create a meetings object 
-#need to make appropriate changes to supervisor repo fucntions 
+- get a supervisors activity 
+- update a supervisors office hours
+- checks if the supervisor needs to update their office hours
+
+
+
+TO DO:
+- add information on personas at the bottom of the console that is consistent throughout so that 
+when it is being marked they have informatio on objects being used
