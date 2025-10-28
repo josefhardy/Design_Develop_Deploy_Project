@@ -21,7 +21,9 @@ current functionalities with queries:
 
 - fetch available meeting slots for a supervisor on a given date
 - add a meeting to the table
-- 
+- get meeting by id
+- get meeting by date, supervisor id or student id
+-
 
 REQUIRED FUNCTIONALITY:
 - a studeny should be bale to report how they are feeling(wellbeing score)
