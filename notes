@@ -23,7 +23,15 @@ current functionalities with queries:
 - add a meeting to the table
 - get meeting by id
 - get meeting by date, supervisor id or student id
--
+- delete meeting
+- update meeting 
+
+- rercord supervisor interaction
+- get supervis0or activity 
+- get student interactions
+- get all supervisor interactions
+- get all student interactions
+
 
 REQUIRED FUNCTIONALITY:
 - a studeny should be bale to report how they are feeling(wellbeing score)
@@ -36,5 +44,5 @@ REQUIRED FUNCTIONALITY:
 
 TO DO:
 - add information on personas at the bottom of the console that is consistent throughout so that 
-when it is being marked they have informatio on objects being used
-- need yto make sure that meeting logic is solid, ie if a supervisor changes office hours then meetings need to be changed/ updated 
+when it is being marked they have information on objects being used
+- before starting report carefully look through labs and write up to see what needs to be included 
